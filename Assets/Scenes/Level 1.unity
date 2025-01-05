@@ -4559,6 +4559,14 @@ PrefabInstance:
       propertyPath: groundLayer.m_Bits
       value: 128
       objectReference: {fileID: 0}
+    - target: {fileID: 2206493450727427543, guid: ed57783d201e0184183307e997b5e2f1, type: 3}
+      propertyPath: m_Size.x
+      value: 1.5145786
+      objectReference: {fileID: 0}
+    - target: {fileID: 2206493450727427543, guid: ed57783d201e0184183307e997b5e2f1, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.01217404
+      objectReference: {fileID: 0}
     - target: {fileID: 5151083680780682525, guid: ed57783d201e0184183307e997b5e2f1, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.473485
@@ -4615,7 +4623,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player2 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1307594703951031104, guid: ed57783d201e0184183307e997b5e2f1, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
