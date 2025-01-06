@@ -13,6 +13,7 @@ TagManager:
   - key
   - Level 3
   - Door
+  - Level 4
   layers:
   - Default
   - TransparentFX

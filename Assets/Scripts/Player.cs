@@ -12,7 +12,10 @@ public class Player : MonoBehaviour
     private float jumpingPower = 16f;
     private bool isFacingRight = true;
     public string sceneName1 = "Level";
-    public string sceneName2 = "Level";
+    public string sceneName2 = "Level 2";
+    public string sceneName3 = "Level 3";
+    public string sceneName4 = "Level 4";
+    Vector2 checkPointPos;
     [Header("Sound")]
     private AudioSource audioSource;
     public AudioClip deathSound;
@@ -27,6 +30,7 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        checkPointPos = transform.position;
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -109,7 +113,15 @@ public class Player : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
-    
+        else if (collision.CompareTag("Level 3"))
+        {
+            SceneManager.LoadScene(sceneName3);
+        }
+        else if (collision.CompareTag("Level 4"))
+        {
+            SceneManager.LoadScene(sceneName4);
+        }
+
 
     }
     private void Die()
@@ -117,6 +129,11 @@ public class Player : MonoBehaviour
        
         audioSource.PlayOneShot(deathSound);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        transform.position = checkPointPos;
+    }
+    public void UpdateCheckPoint(Vector2 pos)
+    {
+        checkPointPos = pos;
     }
     
 }
