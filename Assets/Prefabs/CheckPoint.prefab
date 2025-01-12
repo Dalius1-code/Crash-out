@@ -1,6 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &2160126523411639582
+--- !u!1 &2116430643077053806
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7962545979275399313}
+  m_Layer: 0
+  m_Name: RespawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7962545979275399313
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116430643077053806}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.15713547, y: 0.0017473437, z: -0.0068610115}
+  m_LocalScale: {x: 4.910547, y: 0.8737352, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4373778594695579493}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &2289413119170748161
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,11 +41,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2555627240213911652, guid: b7aadede2baad9948b8e3a78fb4e7c5f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.484
+      value: 2.775
       objectReference: {fileID: 0}
     - target: {fileID: 2555627240213911652, guid: b7aadede2baad9948b8e3a78fb4e7c5f, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.318
+      value: 0.315
       objectReference: {fileID: 0}
     - target: {fileID: 2555627240213911652, guid: b7aadede2baad9948b8e3a78fb4e7c5f, type: 3}
       propertyPath: m_LocalPosition.z
@@ -50,7 +81,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2951662918711817305, guid: b7aadede2baad9948b8e3a78fb4e7c5f, type: 3}
       propertyPath: m_Name
-      value: PassiveCheckPoint Variant
+      value: CheckPoint
       objectReference: {fileID: 0}
     - target: {fileID: 6656471316128059085, guid: b7aadede2baad9948b8e3a78fb4e7c5f, type: 3}
       propertyPath: m_Color.b
@@ -66,63 +97,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 2555627240213911652, guid: b7aadede2baad9948b8e3a78fb4e7c5f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7962545979275399313}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 2951662918711817305, guid: b7aadede2baad9948b8e3a78fb4e7c5f, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8485056528406932878}
+      addedObject: {fileID: 7178096885121253536}
   m_SourcePrefab: {fileID: 100100000, guid: b7aadede2baad9948b8e3a78fb4e7c5f, type: 3}
---- !u!1 &3822472420025637191 stripped
+--- !u!1 &3977743704844151640 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2951662918711817305, guid: b7aadede2baad9948b8e3a78fb4e7c5f, type: 3}
-  m_PrefabInstance: {fileID: 2160126523411639582}
+  m_PrefabInstance: {fileID: 2289413119170748161}
   m_PrefabAsset: {fileID: 0}
---- !u!60 &8485056528406932878
-PolygonCollider2D:
+--- !u!114 &7178096885121253536
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3822472420025637191}
+  m_GameObject: {fileID: 3977743704844151640}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.5}
-    newSize: {x: 1, y: 0.5}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0, y: 0.25}
-      - {x: -0.5, y: 0}
-      - {x: 0, y: -0.25}
-      - {x: 0.5, y: 0}
-  m_UseDelaunayMesh: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb2d1de14d443549a4fb2c31b44fe0e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  passive: {fileID: 0}
+  active: {fileID: 21300000, guid: 129f87dacd26fef45b4224b328f488cc, type: 3}
+  respawnPoint: {fileID: 7962545979275399313}
+--- !u!4 &4373778594695579493 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2555627240213911652, guid: b7aadede2baad9948b8e3a78fb4e7c5f, type: 3}
+  m_PrefabInstance: {fileID: 2289413119170748161}
+  m_PrefabAsset: {fileID: 0}

@@ -26,12 +26,13 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
     private int key = 0;
-    
-    
+    private float scale;
+
     void Start()
     {
         checkPointPos = transform.position;
         audioSource = GetComponent<AudioSource>();
+        scale = transform.localScale.x;
     }
 
 
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour
         Flip();
         if (transform.position.y < -4)
         {
-           
+
             Die();
         }
     }
@@ -76,15 +77,8 @@ public class Player : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Start"))
-        {
-            SceneManager.LoadScene(sceneName1);
-        }
-        else if (collision.CompareTag("Finish"))
-        {
-            SceneManager.LoadScene(sceneName2);
-        }
-        else if (collision.CompareTag("Spike"))
+
+       if (collision.CompareTag("Spike"))
         {
             Die();
         }
@@ -113,29 +107,57 @@ public class Player : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
-        else if (collision.CompareTag("Level 3"))
-        {
-            SceneManager.LoadScene(sceneName3);
-        }
-        else if (collision.CompareTag("Level 4"))
-        {
-            SceneManager.LoadScene(sceneName4);
-        }
+       
+       
 
 
     }
     private void Die()
     {
-       
+
         audioSource.PlayOneShot(deathSound);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        transform.position = checkPointPos;
+        StartCoroutine(Respawn(0.1f));
     }
     public void UpdateCheckPoint(Vector2 pos)
     {
         checkPointPos = pos;
     }
-    
+    IEnumerator Respawn(float duration)
+    {
+        if (scale == 0.5)
+        {
+            rb.velocity = new Vector2(0, 0);
+            rb.simulated = false;
+            transform.localScale = new Vector3(0, 0, 0);
+            yield return new WaitForSeconds(duration);
+            transform.position = checkPointPos;
+            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            rb.simulated = true;
+        }
+        else if (scale == 0.25)
+        {
+            rb.velocity = new Vector2(0, 0);
+            rb.simulated = false;
+            transform.localScale = new Vector3(0, 0, 0);
+            yield return new WaitForSeconds(duration);
+            transform.position = checkPointPos;
+            transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+            rb.simulated = true;
+        }
+        else if (scale == -0.5)
+        {
+            rb.velocity = new Vector2(0, 0);
+            rb.simulated = false;
+            transform.localScale = new Vector3(0, 0, 0);
+            yield return new WaitForSeconds(duration);
+            transform.position = checkPointPos;
+            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+
+
+
+        }
+
+    }
 }
 
 
