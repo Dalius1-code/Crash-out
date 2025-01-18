@@ -14,6 +14,8 @@ TagManager:
   - Level 3
   - Door
   - Level 4
+  - Mini portal
+  - Big portal
   layers:
   - Default
   - TransparentFX

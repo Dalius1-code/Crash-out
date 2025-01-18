@@ -1,8 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -59,7 +57,6 @@ public class Player : MonoBehaviour
     }
 
 
-    // Update is called once per frame
     void Update()
     {
         if (isDashing == true)
@@ -84,8 +81,8 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
         }
-        WallSlide();
-        WallJump();
+       
+        
         if(!isWallJumping)
         {
             Flip();
@@ -95,7 +92,7 @@ public class Player : MonoBehaviour
         {
             StartCoroutine(Dash());
         }
-
+        
         if (transform.position.y < -4)
         {
 
@@ -110,8 +107,11 @@ public class Player : MonoBehaviour
         {
             RenderSettings.skybox = Day;
         }
-        
-        
+        WallJump();
+        WallSlide();
+        Flip();
+
+
     }
     private void FixedUpdate()
     {
@@ -146,6 +146,7 @@ public class Player : MonoBehaviour
         if (collision.CompareTag("Spike"))
         {
             Die();
+            Flip();
         }
 
         else if (collision.CompareTag("Wind"))
@@ -172,11 +173,14 @@ public class Player : MonoBehaviour
                 Destroy(collision.gameObject);
             }
         }
-        Flip();
-
-
-
-
+        else if(collision.gameObject.CompareTag("Mini portal"))
+        {
+            transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+        }
+        else if (collision.gameObject.CompareTag("Big portal"))
+        {
+            transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+        }
     }
     private void Die()
     {
@@ -190,19 +194,43 @@ public class Player : MonoBehaviour
     }
     IEnumerator Respawn(float duration)
     {
+        if(transform.localScale.x == 0.5)
+        {
             rb.velocity = new Vector2(0, 0);
             rb.simulated = false;
             transform.localScale = new Vector3(0, 0, 0);
             yield return new WaitForSeconds(duration);
             transform.position = checkPointPos;
             transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-            Flip();
             rb.simulated = true;
-             
+        }
+        else if(transform.localScale.x == 0.25)
+        {
+            rb.velocity = new Vector2(0, 0);
+            rb.simulated = false;
+            transform.localScale = new Vector3(0, 0, 0);
+            yield return new WaitForSeconds(duration);
+            transform.position = checkPointPos;
+            transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+            rb.simulated = true;
+        }
+        else if (transform.localScale.x == -0.25)
+        {
+            rb.velocity = new Vector2(0, 0);
+            rb.simulated = false;
+            transform.localScale = new Vector3(0, 0, 0);
+            yield return new WaitForSeconds(duration);
+            transform.position = checkPointPos;
+            transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+            rb.simulated = true;
+        }
+
+
 
     }
     private IEnumerator Dash()
     {
+        Flip();
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
@@ -267,6 +295,4 @@ public class Player : MonoBehaviour
     {
         isWallJumping = false;
     }
-
-
 }
