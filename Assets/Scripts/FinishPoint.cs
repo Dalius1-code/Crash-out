@@ -2,24 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class FinishPoint : MonoBehaviour
 {
-    public string sceneName2 = "Level 2";
+
+    [SerializeField] GameObject endMenu;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
             UnlockNewLevel();
-            SceneControler.instance.NextLevel();
+            Debug.Log( PlayerPrefs.GetInt("unlockedlevel"));
+            
+            endMenu.SetActive(true);
         }
     }
+
     void UnlockNewLevel()
     {
-        if (SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("ReachedIndex"))
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        int unlockedLevel = PlayerPrefs.GetInt("unlockedlevel", 1);
+
+        if (currentLevel >= unlockedLevel)
         {
-            PlayerPrefs.SetInt("ReachedIndex", SceneManager.GetActiveScene().buildIndex + 1);
-            PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("UnlockedLevel", 1) + 1);
-            PlayerPrefs.Save(); 
+            PlayerPrefs.SetInt("unlockedlevel", currentLevel + 1);
+            PlayerPrefs.Save();
+            Debug.Log("Lygis atrakintas! Naujas unlockedlevel: " + (currentLevel + 1));
         }
     }
 }

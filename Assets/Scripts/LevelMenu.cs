@@ -7,21 +7,34 @@ using UnityEngine.UI;
 public class LevelMenu : MonoBehaviour
 {
     public Button[] buttons;
+
     private void Awake()
     {
-        int unlockedLevel = PlayerPrefs.GetInt("UnlockedLevel ", 1);
-        for(int i = 0; i < buttons.Length; i++)
+        int unlockedLevel = PlayerPrefs.GetInt("unlockedlevel", 1);
+
+        // Visi mygtukai iðjungiami
+        for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].interactable = false;
         }
-        for(int i = 0;i < unlockedLevel; i++)
+
+        // Atrakinti mygtukai iki "unlockedLevel"
+        for (int i = 0; i < unlockedLevel && i < buttons.Length; i++)
         {
             buttons[i].interactable = true;
         }
     }
-    public void OPenLevel(int levelID)
+
+    public void OpenLevel(int levelID)
     {
         string levelName = "Level " + levelID;
-        SceneManager.LoadScene(levelName);
+        if (Application.CanStreamedLevelBeLoaded(levelName))
+        {
+            SceneManager.LoadScene(levelName);
+        }
+        else
+        {
+            Debug.LogError("Scena nepavyko ákelti: " + levelName);
+        }
     }
 }

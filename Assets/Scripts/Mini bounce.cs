@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Minibounce : MonoBehaviour
 {
-    private float bounce = 15f;
+    private float bounce = 20f;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
